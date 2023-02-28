@@ -1,0 +1,25 @@
+.posts-ul {
+    list-style: none;
+}
+
+/* .posts-ul .card {
+    border-bottom: 1px dotted black;
+    margin-bottom: 5px;
+} */
+
+.size-thumbnail {
+    width: 80px !important;
+    height: 80px !important;
+}
+
+.posts-ul img {
+    border-radius: 10px;
+}
+
+.post-content {
+    margin: 0px;
+}
+
+.post-title p {
+    margin: 0px;
+}
