@@ -9,6 +9,7 @@ Author URI: https://www.linkedin.com/in/muhammad-usman-b3439218b/
 License: GPL2
 */
 
+defined('ABSPATH') || die("hey you can't call me :) ");
 class Category_Wise_Posts_with_Thumbnails extends WP_Widget
 {
 
@@ -16,10 +17,10 @@ class Category_Wise_Posts_with_Thumbnails extends WP_Widget
     public function __construct()
     {
         $widget_options = array(
-            'classname' => 'custom-recent-posts-widget',
-            'description' => 'A custom widget to display recent posts in the sidebar'
+            'classname' => 'Category-Wise-Posts-with-Thumbnails',
+            'description' => 'A custom widget to display recent posts category wise in the sidebar'
         );
-        parent::__construct('custom_recent_posts_widget', 'Category Wise Posts with Thumbnails Widget', $widget_options);
+        parent::__construct('Category_Wise_Posts_with_Thumbnails', 'Category Wise Posts with Thumbnails Widget', $widget_options);
         add_action('wp_enqueue_scripts', array($this, 'my_enqueue_scripts'));
     }
     public function my_enqueue_scripts()
