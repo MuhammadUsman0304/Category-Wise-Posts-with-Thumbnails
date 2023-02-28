@@ -6,7 +6,7 @@ Description: Small and fast plugin to display posts category wise in the sidebar
 Version: 1.0.0
 Author: Muhammad Usman
 Author URI: https://www.linkedin.com/in/muhammad-usman-b3439218b/
-License: GPL2
+License: GPLv2 or later
 */
 
 defined('ABSPATH') || die("hey you can't call me :) ");
