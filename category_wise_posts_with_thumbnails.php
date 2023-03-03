@@ -33,7 +33,11 @@ class Category_Wise_Posts_with_Thumbnails extends WP_Widget
     // Front-end display of widget
     public function widget($args, $instance)
     {
-        $title = apply_filters('widget_title', $instance['title']);
+        if (isset($instance['title'])) {
+            $title = apply_filters('widget_title', $instance['title']);
+        } else {
+            $title = '';
+        }
         $num_posts = isset($instance['num_posts']) ? absint($instance['num_posts']) : 5;
         $show_date = isset($instance['show_date']) ? (bool) $instance['show_date'] : false;
         $show_thumbnail = isset($instance['show_thumbnail']) ? (bool) $instance['show_thumbnail'] : false;
@@ -58,18 +62,14 @@ class Category_Wise_Posts_with_Thumbnails extends WP_Widget
 
         $query = new WP_Query($recent_posts);
 
-        if ($recent_posts['before_widget']) {
+        if (isset($recent_posts['before_widget'])) {
             echo $recent_posts['before_widget'];
         }
-        if (
-            !empty($title)
-        ) {
+        if (!empty($title) && isset($recent_posts['before_title'])) {
             echo $recent_posts['before_title'] . $title . $recent_posts['after_title'];
         }
 
-        if (
-            $query->have_posts()
-        ) {
+        if ($query->have_posts()) {
             // echo '<ul class="posts-ul">';
             while ($query->have_posts()) {
                 $query->the_post();
@@ -82,7 +82,7 @@ class Category_Wise_Posts_with_Thumbnails extends WP_Widget
                 <div class="col-md-6">
                 ';
 
-                echo '<a class="text-decoration-none" href="' . get_permalink() . '"><h2 class="post-content">' . get_the_title() . '</h2></a>';
+                echo '<a class="text-decoration-none" href="' . get_permalink() . '"><h2 class="post-content post-title">' . get_the_title() . '</h2></a>';
                 echo '<p class="post-content">' . get_the_date() . '</p>';
                 echo '<p class="post-content"><a class="text-decoration-none" href="#">' . get_the_author() . '</a> </p>';
 
@@ -96,7 +96,7 @@ class Category_Wise_Posts_with_Thumbnails extends WP_Widget
             echo '<p>No posts found</p>';
         }
         wp_reset_postdata();
-        if ($recent_posts['after_widget']) {
+        if (isset($recent_posts['after_widget'])) {
             echo $recent_posts['after_widget'];
         }
     }
