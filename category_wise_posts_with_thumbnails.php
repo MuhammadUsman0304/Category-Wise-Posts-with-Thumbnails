@@ -5,8 +5,11 @@ Plugin URI: https://github.com/MuhammadUsman0304/Category-Wise-Posts-with-Thumbn
 Description: Small and fast plugin to display posts category wise in the sidebar, a list of linked titles and thumbnails of  posts category wise
 Version: 1.0.0
 Author: Muhammad Usman
+Tags: post widget, posts with thumbnails, category wise posts
 Author URI: https://www.linkedin.com/in/muhammad-usman-b3439218b/
-License: GPLv2 or later
+License: GPLv3 or later
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
+
 */
 
 defined('ABSPATH') || die("hey you can't call me :) ");
@@ -26,8 +29,8 @@ class Category_Wise_Posts_with_Thumbnails extends WP_Widget
     public function my_enqueue_scripts()
     {
         wp_enqueue_style('my-style', plugin_dir_url(__FILE__) . 'assets/css/style.css');
-        wp_enqueue_style('bs-style', 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"', [], false, false);
-        wp_enqueue_script('bs-js', '<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>', array('jquery'), 1.0, true);
+        wp_enqueue_style('bs-style', plugin_dir_url(__FILE__) . 'assets/css/bootstrap.min.css"', [], false, false);
+        wp_enqueue_script('bs-js', 'assets/js/bootstrap.bundle.min.js', array('jquery'), 1.0, true);
     }
 
     // Front-end display of widget
@@ -91,13 +94,13 @@ class Category_Wise_Posts_with_Thumbnails extends WP_Widget
                ';
                 echo "</div>";
             }
-            // echo '</ul>';
+            echo '</ul>';
         } else {
             echo '<p>No posts found</p>';
         }
         wp_reset_postdata();
         if (isset($recent_posts['after_widget'])) {
-            echo $recent_posts['after_widget'];
+            echo esc_html($recent_posts['after_widget']);
         }
     }
 
@@ -108,14 +111,14 @@ class Category_Wise_Posts_with_Thumbnails extends WP_Widget
         $thumbnail_size = isset($instance['thumbnail_size']) ? sanitize_text_field($instance['thumbnail_size']) : 'thumbnail';
         $category = isset($instance['category']) ? absint($instance['category']) : 0;
         $categories = get_categories();
-        //$category_name = '';
+        $category_name = '';
 
-        // if ($category) {
-        //     $category_obj = get_category($category);
-        //     if ($category_obj) {
-        //         $category_name = $category_obj->name;
-        //     }
-        // }
+        if ($category) {
+            $category_obj = get_category($category);
+            if ($category_obj) {
+                $category_name = $category_obj->name;
+            }
+        }
 
 ?>
         <p>
@@ -141,12 +144,12 @@ class Category_Wise_Posts_with_Thumbnails extends WP_Widget
         </p>
         <p>
             <label for="<?php echo $this->get_field_id('category') ?>">Category:</label>
-            <select class="widefat myuscls" id="myus_category <?php echo $this->get_field_id('category') ?>" name="<?php echo  $this->get_field_name('category') ?>">
+            <select class="widefat myuscls" id="myus_category <?php echo esc_html($this->get_field_id('category')) ?>" name="<?php echo  esc_html($this->get_field_name('category')) ?>">
                 <option value="0">All categories</option>
 
                 <?php
                 foreach ($categories as $cat) {
-                    echo '<option value="' . $cat->cat_ID . '" ' . selected($category, $cat->cat_ID, false) . '>' . $cat->cat_name . '</option>';
+                    echo '<option value="' . esc_html($cat->cat_ID) . '" ' . selected($category, $cat->cat_ID, false) . '>' . esc_html($cat->cat_name) . '</option>';
                 }
                 ?>
             </select>
