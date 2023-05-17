@@ -14,8 +14,8 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 defined('ABSPATH') || die("hey you can't call me :) ");
 
-// DD_ prefix stand for DevDose my company name 
-class DD_Category_Wise_Posts_with_Thumbnails extends WP_Widget
+
+class DD_DevDose_Category_Wise_Posts_with_Thumbnails extends WP_Widget
 {
 
     // Set up the widget name and description
@@ -25,7 +25,7 @@ class DD_Category_Wise_Posts_with_Thumbnails extends WP_Widget
             'classname' => 'Category-Wise-Posts-with-Thumbnails',
             'description' => 'A custom widget to display recent posts category wise in the sidebar'
         );
-        parent::__construct('DD_Category_Wise_Posts_with_Thumbnails', 'Category Wise Posts with Thumbnails Widget', $widget_options);
+        parent::__construct(' DD_DevDose_Category_Wise_Posts_with_Thumbnails', 'Category Wise Posts with Thumbnails Widget', $widget_options);
         add_action('wp_enqueue_scripts', array($this, 'my_enqueue_scripts'));
     }
     public function my_enqueue_scripts()
@@ -172,10 +172,10 @@ class DD_Category_Wise_Posts_with_Thumbnails extends WP_Widget
     }
 }
 
-if (!function_exists('DD_register_custom_recent_posts_widget')) {
-    function DD_register_custom_recent_posts_widget()
+if (!function_exists('DD_DevDose_register_custom_recent_posts_widget')) {
+    function DD_DevDose_register_custom_recent_posts_widget()
     {
-        register_widget('DD_Category_Wise_Posts_with_Thumbnails');
+        register_widget('DD_DevDose_Category_Wise_Posts_with_Thumbnails');
     }
-    add_action('widgets_init', 'DD_register_custom_recent_posts_widget');
+    add_action('widgets_init', 'DD_DevDose_register_custom_recent_posts_widget');
 }
