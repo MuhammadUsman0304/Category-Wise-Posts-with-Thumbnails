@@ -1,6 +1,6 @@
 ==== Category Wise Posts with Thumbnails ====
-Contributors: (this should be a list of wordpress.org userid's)
-Donate link: https://example.com/
+
+Donate link: patreon.com/DevDoes
 Tags: post widget, posts with thumbnails, category wise posts
 Requires at least: 3.1
 Requires PHP: 5.3
