@@ -1,11 +1,11 @@
-=== Category Wise Posts with Thumbnails ===
+==== Category Wise Posts with Thumbnails ====
 Contributors: (this should be a list of wordpress.org userid's)
 Donate link: https://example.com/
 Tags: post widget, posts with thumbnails, category wise posts
 Requires at least: 3.1
 Requires PHP: 5.3
 Tested up to: 6.2
-Stable tag: 1.6.0
+Stable tag: 1.0.0
 License: GPL v3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
